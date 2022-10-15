@@ -1,15 +1,60 @@
-import { StyleSheet } from 'react-native';
+import { useEffect, useState } from 'react';
+import { StyleSheet , SafeAreaView  } from 'react-native';
 
+import { SwipeableCard  } from '../components/UI/Cards';
 import EditScreenInfo from '../components/EditScreenInfo';
 import { Text, View } from '../components/Themed';
+
 import { RootTabScreenProps } from '../types';
+import { DEMO_CONTENT } from "../constants/dummyData" 
 
 export default function TabOneScreen({ navigation }: RootTabScreenProps<'TabOne'>) {
+  const [noMoreCard, setNoMoreCard] = useState(false);
+  const [sampleCardArray, setSampleCardArray] = useState(DEMO_CONTENT);
+  const [swipeDirection, setSwipeDirection] = useState('--');
+   
+  const removeCard = (id) => {
+    // alert(id);
+    sampleCardArray.splice(
+      sampleCardArray.findIndex((item) => item.id == id),
+      1
+    );
+    setSampleCardArray(sampleCardArray);
+    if (sampleCardArray.length == 0) {
+      setNoMoreCard(true);
+    }
+  };
+
+  const lastSwipedDirection = (swipeDirection) => {
+    setSwipeDirection(swipeDirection);
+  };
+    useEffect(()=>{
+      console.log(swipeDirection);
+      if(swipeDirection == 'Right'){
+        setTimeout(()=>{
+          navigation.navigate("Offer"); 
+        } ,500);
+       
+      }
+    },[swipeDirection]);
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Home Screen</Text>
-      <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
-      <EditScreenInfo path="/screens/TabOneScreen.tsx" />
+      <SafeAreaView style={{ flex: 1 , alignContent: "center" , justifyContent: "center"  }}>
+     
+      <View style={styles.container}>
+        {sampleCardArray.map((item, key) => (
+          <SwipeableCard
+            key={key}
+            item={item}
+            removeCard={() => removeCard(item.id)}
+            swipedDirection={lastSwipedDirection}
+          />
+        ))}
+        {noMoreCard ? (
+          <Text style={{ fontSize: 22, color: '#000' }}>No Items Found.</Text>
+        ) : null}
+      </View>
+    </SafeAreaView>
     </View>
   );
 }
@@ -17,16 +62,24 @@ export default function TabOneScreen({ navigation }: RootTabScreenProps<'TabOne'
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
     justifyContent: 'center',
+    alignItems: 'center',
+    width: "100%",
+    backgroundColor: "#fff",
+  
   },
-  title: {
-    fontSize: 20,
+  titleText: {
+    fontSize: 22,
     fontWeight: 'bold',
+    textAlign: 'center',
+    paddingVertical: 20,
   },
-  separator: {
-    marginVertical: 30,
-    height: 1,
-    width: '80%',
+  cardTitleStyle: {
+    color: '#fff',
+    fontSize: 24,
+  },
+  swipeText: {
+    fontSize: 18,
+    textAlign: 'center',
   },
 });
