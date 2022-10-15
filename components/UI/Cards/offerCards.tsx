@@ -1,3 +1,4 @@
+import React  from "react";
 import {  Text   , Image, TouchableOpacity ,View  } from "react-native";
 import { Center,  Flex  } from "native-base";
 
@@ -5,11 +6,16 @@ import useColorModes from "../../../hooks/useColorModes";
 
 
 const OfferCards = (props: IOfferCards) => {
-    const { itemImage , itemName} = props;   
+    const { itemImage , itemName  , navigation } = props;   
      
     const { backgroundColor , textColor } = useColorModes();
     return( 
-  <TouchableOpacity>
+  <TouchableOpacity 
+  onPress={()=>{
+    navigation.navigate("Chat" ,  { itemImage , itemName  }  );
+  }}
+  
+  >
     <Flex
        style={{
         width: "80%",
@@ -53,5 +59,6 @@ export default OfferCards;
 interface IOfferCards {
     itemName: string ;
     itemImage:  string;
-    itemId : number
+    itemId : number ;
+    navigation: any;
 }

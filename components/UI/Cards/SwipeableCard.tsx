@@ -1,4 +1,4 @@
-import { useState , Dispatch } from "react";
+import React ,{ useState , Dispatch } from "react";
 import { Animated  ,
  Dimensions , 
  Text ,
