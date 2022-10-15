@@ -6,10 +6,12 @@ import { OfferCards } from '../components/UI/Cards';
 import { Text, View } from '../components/Themed';
 import { DEMO_ITEMS } from "../constants/dummyData";
 
+import { RootTabScreenProps } from '../types';
 
 
 
-export default function OfferItemScreen() {
+
+export default function OfferItemScreen({ navigation }: RootTabScreenProps<'Offer'>) {
   return (
     <View style={styles.container}>
      <Text  style={{
@@ -20,7 +22,8 @@ export default function OfferItemScreen() {
 
           {
         DEMO_ITEMS.map( item => (
-              <OfferCards itemName={item.name!} itemImage={item.image!} itemId={item.id}                
+              <OfferCards itemName={item.name!} itemImage={item.image!} itemId={item.id} 
+              navigation={navigation}                 
                 />
           
         ))

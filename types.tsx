@@ -27,6 +27,9 @@ export type RootStackScreenProps<Screen extends keyof RootStackParamList> = Nati
 export type RootTabParamList = {
   TabOne: undefined;
   TabTwo: undefined;
+  Offer: undefined;
+  Chat: undefined;
+  
 };
 
 export type RootTabScreenProps<Screen extends keyof RootTabParamList> = CompositeScreenProps<
@@ -41,7 +44,7 @@ export interface Item{
   name: string , 
   location : string ,
   desc : string , 
-  
+
 
 } 
 
