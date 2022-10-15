@@ -1,3 +1,4 @@
+import React  from "react";
 import {  Text   , Image, TouchableOpacity ,View  } from "react-native";
 import { Center,  Flex  } from "native-base";
 
@@ -11,7 +12,7 @@ const OfferCards = (props: IOfferCards) => {
     return( 
   <TouchableOpacity 
   onPress={()=>{
-    navigation.navigate("Chat");
+    navigation.navigate("Chat" ,  { itemImage , itemName  }  );
   }}
   
   >

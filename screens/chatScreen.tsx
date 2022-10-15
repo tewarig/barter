@@ -1,35 +1,38 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { Platform, StyleSheet } from 'react-native';
+import React, { useState, useCallback, useEffect } from 'react'
+import { GiftedChat } from 'react-native-gifted-chat'
+import { RootTabScreenProps } from '../types';
 
-import { Text, View } from '../components/Themed';
+export default function ChatScreen({ route ,  navigation }: RootTabScreenProps<'Chat'>) {
+  const [messages, setMessages] = useState<any>([]);
+   const {  itemImage , itemName  } = route.params; 
+  
+  useEffect(() => {
+    setMessages([
+      {
+        _id: 1,
+        text: `Hi ,  I would like to exchange  ${itemName} with you. `,
+        image: itemImage,
+        createdAt: new Date(),
+        user: {
+          _id: 1,
+          name: 'React Native',
+          avatar: 'https://placeimg.com/140/140/any',
+        },
+      },
+    ])
+  }, [])
+  const onSend = useCallback((messages = []) => {
+    setMessages(previousMessages => GiftedChat.append(previousMessages, messages))
+  }, [])
 
-export default function ModalScreen() {
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Here to Help </Text>
-      <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
-       <Text> We will add guidelines here later :) </Text>
-
-      {/* Use a light status bar on iOS to account for the black space above the modal */}
-      <StatusBar style={Platform.OS === 'ios' ? 'light' : 'auto'} />
-    </View>
-  );
+    <GiftedChat
+      messages={messages}
+      onSend={messages => onSend(messages)}
+      user={{
+        _id: 1,
+      }}
+    />
+  )
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  title: {
-    fontSize: 20,
-    fontWeight: 'bold',
-  },
-  separator: {
-    marginVertical: 30,
-    height: 1,
-    width: '80%',
-  },
-});

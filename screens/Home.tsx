@@ -1,8 +1,7 @@
-import { useEffect, useState } from 'react';
+import  React , { useEffect, useState } from 'react';
 import { StyleSheet , SafeAreaView  } from 'react-native';
 
 import { SwipeableCard  } from '../components/UI/Cards';
-import EditScreenInfo from '../components/EditScreenInfo';
 import { Text, View } from '../components/Themed';
 
 import { RootTabScreenProps } from '../types';
