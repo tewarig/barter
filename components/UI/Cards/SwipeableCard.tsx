@@ -215,7 +215,7 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     fontSize: 30,
   
-    color: "#fff", 
+    color: "#000", 
    } ,
    reject : {
     position: 'absolute',
