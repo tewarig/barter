@@ -1,27 +1,40 @@
 import { StatusBar } from 'expo-status-bar';
-import { Platform, StyleSheet } from 'react-native';
+import { Platform, StyleSheet  } from 'react-native';
+
+import { OfferCards } from '../components/UI/Cards';
 
 import { Text, View } from '../components/Themed';
+import { DEMO_ITEMS } from "../constants/dummyData";
+
+
+
 
 export default function OfferItemScreen() {
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Here to Help </Text>
-      <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
-       <Text> We will add guidelines here later :) </Text>
+     <Text> Offer Items From you listing </Text>
 
- 
+          {
+        DEMO_ITEMS.map( item => (
+              <OfferCards itemName={item.name!} itemImage={item.image!} itemId={item.id}                
+                />
+          
+        ))
+       } 
+     
       <StatusBar style={Platform.OS === 'ios' ? 'light' : 'auto'} />
-    </View>
+    </View >
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
+    display: "flex",
+    alignItems: 'flex-start',
+    flexDirection: "column",
+    justifyContent: 'center', 
   },
+  
   title: {
     fontSize: 20,
     fontWeight: 'bold',

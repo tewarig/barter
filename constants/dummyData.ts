@@ -25,7 +25,7 @@ const DEMO_CONTENT = [
       cardTitle: 'Black Glasses',
       backgroundColor: '#E7088E',
       image: "https://bd.gaadicdn.com/upload/userfiles/images/62c127b7c2489.jpg"  ,
-      name: "Honda Activa" ,
+      name: "Honda Activa " ,
       desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.  " ,
       location: "Bangalore, India" ,
        
@@ -64,12 +64,16 @@ const DEMO_CONTENT = [
     { 
         id: 1, 
         name : "Kala chasma" ,
-        image : ""
-
-
+        image: "https://www.danielwellington.com/product-images/DW00900029_Grande_Bi-Qe1q7XQE.png"  
     } , 
     {
-
+        id: 2 ,
+        name: 'PS5 Controller',
+        image: "https://m.media-amazon.com/images/I/71lPDuOqgKL._SX466_.jpg"  ,
+    } ,
+    {   id: 3 , 
+        image: "https://bd.gaadicdn.com/upload/userfiles/images/62c127b7c2489.jpg"  ,
+        name: "Honda Activa " ,
     }
   ];
-  export { DEMO_CONTENT } ;
+  export { DEMO_CONTENT  , DEMO_ITEMS} ;

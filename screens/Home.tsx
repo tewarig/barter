@@ -6,7 +6,7 @@ import EditScreenInfo from '../components/EditScreenInfo';
 import { Text, View } from '../components/Themed';
 
 import { RootTabScreenProps } from '../types';
-import { DEMO_CONTENT } from "../constants/dummyData" 
+import { DEMO_CONTENT , DEMO_ITEMS } from "../constants/dummyData" 
 
 export default function TabOneScreen({ navigation }: RootTabScreenProps<'TabOne'>) {
   const [noMoreCard, setNoMoreCard] = useState(false);
