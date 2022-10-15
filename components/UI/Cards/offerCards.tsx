@@ -1,9 +1,13 @@
 import {  Text   , Image, TouchableOpacity ,View  } from "react-native";
 import { Center,  Flex  } from "native-base";
 
+import useColorModes from "../../../hooks/useColorModes";
+
 
 const OfferCards = (props: IOfferCards) => {
     const { itemImage , itemName} = props;   
+     
+    const { backgroundColor , textColor } = useColorModes();
     return( 
   <TouchableOpacity>
     <Flex
@@ -13,15 +17,15 @@ const OfferCards = (props: IOfferCards) => {
         justifyContent: "space-between",
         flexDirection: "row",
         alignItems: "center", 
-       backgroundColor: "#fafffc",
-       borderBottomColor : "#636363",
+       backgroundColor: backgroundColor ,
+       borderBottomColor : textColor,
        borderBottomWidth: 1,
        borderRadius: 10,
     }}
        key={itemName}
        >
         <View
-         style={{height : 100 , width : 100 , backgroundColor: "#fff"}}
+         style={{height : 100 , width : 100 , backgroundColor: backgroundColor}}
         >
 
        
@@ -33,7 +37,9 @@ const OfferCards = (props: IOfferCards) => {
         />
          </View>
         <Center>
-             <Text> 
+             <Text style={{
+                color: textColor,
+             }}> 
          {itemName}
         </Text>
       </Center>

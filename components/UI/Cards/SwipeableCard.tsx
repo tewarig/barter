@@ -8,16 +8,24 @@ import { Animated  ,
  View
 } from "react-native";
 
+import useColorModes from "../../../hooks/useColorModes";
+
 import { Item } from "../../../types"; 
+
 
 
 const SCREEN_WIDTH = Dimensions.get('window').width;
 
 const SwipeableCard = (props: ISwipeableCardProps ) => {
     const { item, removeCard , swipedDirection } = props;
+    const { backgroundColor , textColor } = useColorModes();
+
     const [xPosition, setXPosition] = useState(new Animated.Value(0));
     const [showRightAnimation , setShowRightAnimation] = useState<boolean>(false);
     const [showLeftAnimation ,setShowLeftAnimation] = useState<boolean>(false);
+  
+
+   
   let swipeDirection = '';
   let cardOpacity = new Animated.Value(1);
   let rotateCard = xPosition.interpolate({
@@ -101,7 +109,7 @@ const SwipeableCard = (props: ISwipeableCardProps ) => {
       {...panResponder.panHandlers}
       style={[ styles.cardStyle , 
         {
-          backgroundColor: '#fff',
+          backgroundColor: backgroundColor ,
           opacity: cardOpacity,
           transform: [{ translateX: xPosition }, { rotate: rotateCard }],
         },
@@ -157,17 +165,28 @@ const SwipeableCard = (props: ISwipeableCardProps ) => {
       </View>
    
     <View style={styles.mainHeadingContainer}>
-      <Text style={styles.name}>
+      <Text style={[styles.name , {
+        backgroundColor : backgroundColor ,
+        color: textColor
+      }]}>
       🐱 {item.name}
       </Text>
      </View>
      <View style={styles.desContainer}>
-        <Text> 
+        <Text style={[ {
+        backgroundColor : backgroundColor ,
+        color: textColor
+      }]}> 
          🖊️ {item.desc}
         </Text>
         <View style={styles.textContainer}>
     
-    <Text>
+    <Text  
+    style={[ {
+      backgroundColor : backgroundColor ,
+      color: textColor
+    }]}
+    >
     📍 {item.location}
     </Text>
  </View>

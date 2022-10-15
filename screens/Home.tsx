@@ -38,7 +38,7 @@ export default function TabOneScreen({ navigation }: RootTabScreenProps<'TabOne'
       }
     },[swipeDirection]);
   return (
-    <View style={styles.container}>
+    <View style={styles.container} darkColor="#333" lightColor='#fff'> 
       <SafeAreaView style={{ flex: 1 , alignContent: "center" , justifyContent: "center"  }}>
      
       <View style={styles.container}>
@@ -51,7 +51,10 @@ export default function TabOneScreen({ navigation }: RootTabScreenProps<'TabOne'
           />
         ))}
         {noMoreCard ? (
-          <Text style={{ fontSize: 22, color: '#000' }}>No Items Found.</Text>
+          <Text style={{ fontSize: 22 }} 
+           darkColor="#fff"
+           lightColor='#000'          
+          >No Items Found.</Text>
         ) : null}
       </View>
     </SafeAreaView>

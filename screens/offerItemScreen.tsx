@@ -12,7 +12,11 @@ import { DEMO_ITEMS } from "../constants/dummyData";
 export default function OfferItemScreen() {
   return (
     <View style={styles.container}>
-     <Text> Offer Items From you listing </Text>
+     <Text  style={{
+        fontSize: 30 ,
+        fontWeight: "bold" ,
+        margin: 20 ,
+     }}> Offer Items From you listing </Text>
 
           {
         DEMO_ITEMS.map( item => (
@@ -34,7 +38,9 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     justifyContent: 'center', 
   },
-  
+  text : {
+ 
+  }, 
   title: {
     fontSize: 20,
     fontWeight: 'bold',
