@@ -1,4 +1,5 @@
 import Axios from 'axios';
+import Toast from 'react-native-root-toast';
 
 const axios = Axios.create({
     baseURL: process.env.BACKEND_URL || "https://meowtech-backend.herokuapp.com",
@@ -10,6 +11,7 @@ axios.interceptors.response.use(
     },
     function (err){
         console.log(err?.response ? err?.response?.data?.errors[0]: err?.message);
+      
         
         return Promise.reject(err);
     }

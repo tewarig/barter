@@ -1,5 +1,6 @@
+import { KeyboardAvoidingView, Platform  } from "react-native";
 import { Center, Box, Heading, VStack, HStack, FormControl, Link, Input, Button, Text, } from "native-base";
-import { useState } from "react";
+import  React , { useState } from "react";
 import { signInUser } from "../actions/authActions";
 
 const SignIn = ({ navigation }: any) => {
@@ -20,6 +21,10 @@ const SignIn = ({ navigation }: any) => {
   const navigateToSignUp = () => navigation.navigate("SignUp");
 
   return (
+    <KeyboardAvoidingView
+    behavior={Platform.OS === "ios" ? "padding" : "height"}
+  
+  >
     <Center w="100%" h="100%">
       <Box safeArea p="2" py="8" w="90%" maxW="290">
         <Heading size="lg" fontWeight="600" color="coolGray.800" _dark={{
@@ -70,6 +75,7 @@ const SignIn = ({ navigation }: any) => {
         </VStack>
       </Box>
     </Center>
+    </KeyboardAvoidingView>
   );
 };
 

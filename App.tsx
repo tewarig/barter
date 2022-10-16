@@ -1,6 +1,8 @@
 import { StatusBar } from 'expo-status-bar';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { NativeBaseProvider, Box } from "native-base";
+import { RootSiblingParent } from 'react-native-root-siblings';
+
 
 import useCachedResources from './hooks/useCachedResources';
 import useColorScheme from './hooks/useColorScheme';
@@ -15,12 +17,14 @@ export default function App() {
     return null;
   } else {
     return (
+      <RootSiblingParent >
       <NativeBaseProvider>
          <SafeAreaProvider>
            <Navigation colorScheme={colorScheme} />
            <StatusBar />
          </SafeAreaProvider>
       </NativeBaseProvider>
+      </RootSiblingParent>
     );
   }
 }

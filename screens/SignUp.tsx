@@ -1,5 +1,6 @@
+import { KeyboardAvoidingView, Platform  } from "react-native";
 import { Center, Box, Heading, VStack, HStack, FormControl, Link, Input, Button, Text, } from "native-base";
-import { useState } from "react";
+import React,  { useState } from "react";
 import { signUpUser } from "../actions/authActions";
 
 const SignUp = ({navigation}: any) => {
@@ -21,6 +22,9 @@ const SignUp = ({navigation}: any) => {
     }
 
     return (
+        <KeyboardAvoidingView
+        behavior={Platform.OS === "ios" ? "padding" : "height"}
+       >
         <Center w="100%" h="100%">
             <Box safeArea p="2" w="90%" maxW="290" py="8">
                 <Heading size="lg" color="coolGray.800" _dark={{
@@ -36,7 +40,7 @@ const SignUp = ({navigation}: any) => {
                 <VStack space={3} mt="5">
                     <FormControl>
                         <FormControl.Label>Name</FormControl.Label>
-                        <Input onChangeText={(text: string) => setName(text)} placeholder="Name" value={name} />
+                        <Input onChangeText={(text: string) => setName(text)} placeholder="Name" value={name} colorScheme="black" />
                     </FormControl>
                     <FormControl>
                         <FormControl.Label>Email</FormControl.Label>
@@ -50,12 +54,13 @@ const SignUp = ({navigation}: any) => {
                         <FormControl.Label>Confirm Password</FormControl.Label>
                         <Input onChangeText={(text: string) => setConfirmPassword(text)} type="password" placeholder="Confirm Password" value={confirmPassword} />
                     </FormControl>
-                    <Button mt="2" colorScheme="indigo" onPress={submit}>
+                    <Button mt="2" backgroundColor={"muted.900"} onPress={submit}>
                         Sign up
                     </Button>
                 </VStack>
             </Box>
         </Center>
+        </KeyboardAvoidingView>
     );
 };
 
