@@ -1,18 +1,27 @@
 import { KeyboardAvoidingView, Platform  } from "react-native";
-import { Center, Box, Heading, VStack, HStack, FormControl, Link, Input, Button, Text, } from "native-base";
-import React,  { useState } from "react";
+import { Center, Box, Heading, VStack, HStack, FormControl, Link, Input, Button, Text, ArrowForwardIcon, } from "native-base";
+import React,  { useState , useEffect } from "react";
 import { signUpUser } from "../actions/authActions";
+import * as Location from 'expo-location';
+
 
 const SignUp = ({navigation}: any) => {
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
+    const [userSubmitted, setUserSubmitted] = useState(false);
+    const [location, setLocation] = useState<any>(null);
+    const [errorMsg, setErrorMsg] = useState(null);
+  
+
+    
 
     const submit = async () => {
-        if(name.length !== 0 && email.length !== 0 && password.length !==0 && confirmPassword.length !== 0) {
+        if(name.length !== 0 && email.length !== 0 && password.length !==0 && confirmPassword.length !== 0 && location)  {
             if(password === confirmPassword) {
-                await signUpUser(name, email, password, navigation);
+                await signUpUser(name, email, password, navigation, `${location.coords.latitude}` , `${location.coords.longitude}`);
+                setUserSubmitted(true);
             } else {
                 alert("Passwords do not match");
             }
@@ -20,6 +29,21 @@ const SignUp = ({navigation}: any) => {
             alert("Fields cannot be empty");
         }
     }
+    useEffect(() => {
+        (async () => {
+          
+          let { status } = await Location.requestForegroundPermissionsAsync();
+          if (status !== 'granted') {
+            setErrorMsg('Permission to access location was denied');
+            return;
+          }
+    
+          let location = await Location.getCurrentPositionAsync({});
+          setLocation(location);
+        })();
+      }, []);
+
+    console.log("location",location);
 
     return (
         <KeyboardAvoidingView
@@ -55,7 +79,12 @@ const SignUp = ({navigation}: any) => {
                         <Input onChangeText={(text: string) => setConfirmPassword(text)} type="password" placeholder="Confirm Password" value={confirmPassword} />
                     </FormControl>
                     <Button mt="2" backgroundColor={"muted.900"} onPress={submit}>
-                        Sign up
+                        <HStack>
+
+                       
+                     <Text color={"secondary.50"}>Continue </Text>
+                        <ArrowForwardIcon color="secondary.50"/>
+                      </HStack>
                     </Button>
                 </VStack>
             </Box>

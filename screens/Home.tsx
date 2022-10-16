@@ -6,11 +6,14 @@ import { Text, View } from '../components/Themed';
 
 import { RootTabScreenProps } from '../types';
 import { DEMO_CONTENT , DEMO_ITEMS } from "../constants/dummyData" 
+import useAllProducts from '../hooks/useAllProducts';
 
 export default function TabOneScreen({ navigation }: RootTabScreenProps<'TabOne'>) {
   const [noMoreCard, setNoMoreCard] = useState(false);
   const [sampleCardArray, setSampleCardArray] = useState(DEMO_CONTENT);
   const [swipeDirection, setSwipeDirection] = useState('--');
+  const { data } = useAllProducts();
+  console.log("data",data);
    
   const removeCard = (id) => {
     // alert(id);

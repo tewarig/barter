@@ -49,12 +49,12 @@ const SignIn = ({ navigation }: any) => {
             <Link _text={{
               fontSize: "xs",
               fontWeight: "500",
-              color: "indigo.500"
+              color: "muted.900"
             }} alignSelf="flex-end" mt="1">
               Forget Password?
             </Link>
           </FormControl>
-          <Button mt="2" colorScheme="indigo" onPress={submit}>
+          <Button mt="2"  background={"muted.900"} onPress={submit}>
             Sign in
           </Button>
           <HStack mt="6" justifyContent="center">
@@ -64,7 +64,7 @@ const SignIn = ({ navigation }: any) => {
               I'm a new user.{" "}
             </Text>
             <Text
-              color="indigo.500"
+              background={"muted.900"}
               fontWeight="medium"
               fontSize="sm"
               onPress={navigateToSignUp}
