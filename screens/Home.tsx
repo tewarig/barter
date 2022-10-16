@@ -1,4 +1,4 @@
-import  React , { useEffect, useState } from 'react';
+import  React , { useContext, useEffect, useState } from 'react';
 import { StyleSheet , SafeAreaView  } from 'react-native';
 
 import { SwipeableCard  } from '../components/UI/Cards';
@@ -7,13 +7,16 @@ import { Text, View } from '../components/Themed';
 import { RootTabScreenProps } from '../types';
 import { DEMO_CONTENT , DEMO_ITEMS } from "../constants/dummyData" 
 import useAllProducts from '../hooks/useAllProducts';
+import { User } from '../context';
 
 export default function TabOneScreen({ navigation }: RootTabScreenProps<'TabOne'>) {
   const [noMoreCard, setNoMoreCard] = useState(false);
   const [sampleCardArray, setSampleCardArray] = useState(DEMO_CONTENT);
   const [swipeDirection, setSwipeDirection] = useState('--');
   const { data } = useAllProducts();
-  console.log("data",data);
+   
+ const { userData   , setUserData  } = useContext(User);
+ console.log("userData" , userData);
    
   const removeCard = (id) => {
     // alert(id);
@@ -39,6 +42,8 @@ export default function TabOneScreen({ navigation }: RootTabScreenProps<'TabOne'
        
       }
     },[swipeDirection]);
+  
+
   return (
     <View style={styles.container} darkColor="#333" lightColor='#fff'> 
       <SafeAreaView style={{ flex: 1 , alignContent: "center" , justifyContent: "center"  }}>

@@ -8,6 +8,7 @@ import useCachedResources from './hooks/useCachedResources';
 import useColorScheme from './hooks/useColorScheme';
 import Navigation from './navigation';
 import React from 'react';
+import Context from './context';
 
 export default function App() {
   const isLoadingComplete = useCachedResources();
@@ -17,6 +18,7 @@ export default function App() {
     return null;
   } else {
     return (
+      <Context>
       <RootSiblingParent >
       <NativeBaseProvider>
          <SafeAreaProvider>
@@ -25,6 +27,7 @@ export default function App() {
          </SafeAreaProvider>
       </NativeBaseProvider>
       </RootSiblingParent>
+      </Context>
     );
   }
 }

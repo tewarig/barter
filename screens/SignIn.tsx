@@ -1,19 +1,28 @@
 import { KeyboardAvoidingView, Platform  } from "react-native";
-import { Center, Box, Heading, VStack, HStack, FormControl, Link, Input, Button, Text, } from "native-base";
+import { Center, Box, Heading, VStack, HStack, FormControl, Link, Input, Button, Text, Spinner } from "native-base";
 import  React , { useState } from "react";
 import { signInUser } from "../actions/authActions";
+import { useContext } from "react";
+import { User } from "../context";
 
 const SignIn = ({ navigation }: any) => {
 
+  const { setUserData } = useContext(User);
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [loading , setLoading ] = useState<boolean>();
 
   const submit = async () => {
 
     if(email.length === 0 || password.length === 0) {
       alert("Fields cannot be empty");
     } else {
-      await signInUser(email, password, navigation);
+      setLoading(true);
+      setTimeout(()=>{
+        setLoading(false);
+      },1000);
+      await signInUser(email, password, navigation , setUserData) ;
     }
    
   }
@@ -54,8 +63,13 @@ const SignIn = ({ navigation }: any) => {
               Forget Password?
             </Link>
           </FormControl>
-          <Button mt="2"  background={"muted.900"} onPress={submit}>
-            Sign in
+          <Button mt="2" 
+           background={"muted.900"}
+            onPress={submit}
+            opacity={loading ? 0.5 : 1}
+            >
+            {loading ?  <Spinner color="white" />  : <Text color={"white"}>Sign In</Text>}
+           
           </Button>
           <HStack mt="6" justifyContent="center">
             <Text fontSize="sm" color="coolGray.600" _dark={{

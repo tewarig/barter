@@ -97,7 +97,7 @@ function BottomTabNavigator() {
         component={TabTwoScreen}
         options={{
           title: 'Profile',
-          tabBarIcon: ({ color }) => <TabBarIcon name="male" color={color} />,
+          tabBarIcon: ({ color }) => <TabBarIcon name="male" />,
         }}
       />
     </BottomTab.Navigator>

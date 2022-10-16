@@ -49,7 +49,7 @@ export interface Item{
   name: string , 
   location : string ,
   desc : string , 
-
+  Profile: string ,
 
 } 
 

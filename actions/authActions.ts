@@ -1,11 +1,13 @@
 import axios from '../utils/axios';
 
-export const signInUser = async (email: string, password: string, navigation: any): Promise<any> => {
+export const signInUser = async (email: string, password: string, navigation: any , setUserData :any): Promise<any> => {
   
    
     try {
         const res = await axios.post(`/api/auth`, { email, password });
         if (res.data.success) {
+            console.log(res.data.user);
+            setUserData(res.data.user);
             navigation.reset({
                 index: 0,
                 routes: [{ name: 'Home' }],
