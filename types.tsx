@@ -50,6 +50,8 @@ export interface Item{
   location : string ,
   desc : string , 
   Profile: string ,
+  List: String
+  
 
 } 
 

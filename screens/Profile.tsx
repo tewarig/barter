@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet } from 'react-native';
-import { Avatar, Center, HStack , VStack } from 'native-base';
+import { Avatar, Button, Center, HStack , VStack } from 'native-base';
 
 
 import EditScreenInfo from '../components/EditScreenInfo';
@@ -19,6 +19,16 @@ export default function Profile({ navigation }: RootTabScreenProps<'Profile'>) {
       }}></Avatar>
       <Center>
       <Text  style={styles.title}>Gaurav Tewari </Text>
+      </Center>
+      <Center>
+      <Button  width={"30%"} colorScheme={"blueGray"}
+       onPress={() => navigation.navigate('List')}
+      style={{
+        marginTop: 10,
+        marginBottom: 10,
+      }}>
+         list another item
+      </Button>
       </Center>
 
        <View style={{

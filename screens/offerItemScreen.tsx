@@ -24,7 +24,8 @@ export default function OfferItemScreen({ navigation }: RootTabScreenProps<'Offe
           {
         DEMO_ITEMS.map( item => (
               <OfferCards itemName={item.name!} itemImage={item.image!} itemId={item.id} 
-              navigation={navigation}                 
+              navigation={navigation}         
+              key={item.id}        
                 />
           
         ))

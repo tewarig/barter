@@ -18,6 +18,7 @@ import TabOneScreen from '../screens/Home';
 import TabTwoScreen from '../screens/Profile';
 import OfferItemScreen from '../screens/offerItemScreen';
 import ChatScreen  from '../screens/chatScreen';
+import ListAnother from '../screens/listAnother';
 import { RootStackParamList, RootTabParamList, RootTabScreenProps } from '../types';
 import LinkingConfiguration from './LinkingConfiguration';
 import SignIn from '../screens/SignIn';
@@ -47,9 +48,10 @@ function RootNavigator() {
       <Stack.Screen name="Home" component={BottomTabNavigator} options={{ headerShown: false }} />
       <Stack.Screen name="NotFound" component={NotFoundScreen} options={{ title: 'Oops!' }} />
       <Stack.Group screenOptions={{ presentation: 'modal' }}>
-        <Stack.Screen name="Info" component={ModalScreen} />
+        <Stack.Screen name="Chats" component={ModalScreen} />
         <Stack.Screen name="Offer"  component={OfferItemScreen} />
         <Stack.Screen name="Chat" component={ChatScreen} />
+        <Stack.Screen name="List" component={ListAnother} />
       </Stack.Group>
     </Stack.Navigator>
   );
@@ -78,12 +80,12 @@ function BottomTabNavigator() {
           tabBarIcon: ({ color }) => <TabBarIcon name="home" />,
           headerRight: () => (
             <Pressable
-              onPress={() => navigation.navigate('Info')}
+              onPress={() => navigation.navigate('Chats')}
               style={({ pressed }) => ({
                 opacity: pressed ? 0.5 : 1,
               })}>
               <FontAwesome
-                name="info-circle"
+                name="wechat"
                 size={25}
                 color={Colors[colorScheme].text}
                 style={{ marginRight: 15 }}
